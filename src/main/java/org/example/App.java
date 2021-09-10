@@ -1,5 +1,5 @@
 package org.example;
-import java.text.DecimalFormat;
+import java.util.Objects;
 import java.util.Scanner;
 
 /*
@@ -11,24 +11,25 @@ public class App
 {
     public static void main( String[] args )
     {
-        DecimalFormat f = new DecimalFormat("##.00");
         Scanner scanner = new Scanner(System.in);
-        float principal, interestRate, years, finalValue;
+        final String username = "ObjectOrientedGrader", password = "abc$123";
+        String userInput, passInput;
 
-        System.out.println( "Enter the principal: " );
-        principal = scanner.nextFloat();
+        System.out.println( "Enter your username: " );
+        userInput = scanner.nextLine();
 
-        System.out.println( "Enter the rate of interest: " );
-        interestRate = scanner.nextFloat();
-
-        System.out.println( "Enter the number of years: " );
-        years = scanner.nextFloat();
-
-        interestRate /= 100;
-        finalValue = principal * (1 + interestRate*years);
-        interestRate *= 100;
-
-        System.out.println( "After " + (int)years + " years at " + interestRate +
-                "%, the investment will be worth $" + f.format(finalValue));
+        if(Objects.equals(userInput, username))
+        {
+            System.out.println( "Hey " + username + "! What's your password? " );
+            passInput = scanner.nextLine();
+            if(Objects.equals(passInput, password))
+                System.out.println( "Welcome!" );
+            else
+                System.out.println( "Invalid Password! Get Out!" );
+        }
+        else
+        {
+            System.out.println( "I don't know you." );
+        }
     }
 }
